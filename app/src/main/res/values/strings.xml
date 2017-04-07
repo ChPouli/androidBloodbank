@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BloodyKeras</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="Bag_Type">
+        <item>double</item>
+        <item>triple</item>
+        <item>quadruplicate</item>
+    </string-array>
+    <string-array name="Antipiktiko_Type">
+        <item>CPD</item>
+        <item>CP2D</item>
+        <item>CPDA</item>
+        <item>CPDA1</item>
+        <item>SAG-M</item>
+    </string-array>
+</resources>
