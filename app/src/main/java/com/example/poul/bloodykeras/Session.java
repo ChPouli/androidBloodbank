@@ -18,6 +18,7 @@ import rx.Subscriber;
 public class Session extends AppCompatActivity {
     private int iduser;
     private int iddonor;
+    private int idsession;
 
     private EditText pressure;
     private EditText hbht;
@@ -72,7 +73,9 @@ public class Session extends AppCompatActivity {
 
                                     @Override
                                     public void onNext(List<SessionM> sessionMs) {
-                                        Toast.makeText(Session.this,"panagia moy" + sessionMs.get(0).getId(),Toast.LENGTH_LONG).show();
+                                       // Toast.makeText(Session.this,"panagia moy" + sessionMs.get(0).getId(),Toast.LENGTH_LONG).show();
+                                        idsession=sessionMs.get(0).getId();
+                                        Toast.makeText(Session.this,"panagia moy" + idsession,Toast.LENGTH_LONG).show();
                                     }
                                 });
                     }
@@ -100,6 +103,10 @@ public class Session extends AppCompatActivity {
 
     public void createBag(View view){
         Intent intent = new Intent(this, NewBag.class);
+        intent.putExtra("userid",iduser);
+        intent.putExtra("donorid",iddonor);
+        intent.putExtra("sessionid",idsession);
+
         startActivity(intent);
     }
 }

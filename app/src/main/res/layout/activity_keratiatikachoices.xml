@@ -36,11 +36,10 @@
         android:layout_height="wrap_content"
         android:text="Session"
         android:id="@+id/button5"
-        android:layout_marginTop="98dp"
-        android:layout_below="@+id/Patbutton"
+        android:onClick="karamba"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="karamba"/>
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -58,6 +57,17 @@
         android:text="update bag"
         android:id="@+id/updatebagBtn"
         android:onClick="updatebagScreen"
-        android:layout_below="@+id/button5"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/button6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pie chart"
+        android:id="@+id/piechartBtn"
+        android:onClick="pieChartScreen"
+        android:layout_below="@+id/updatebagBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

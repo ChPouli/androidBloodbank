@@ -3,7 +3,6 @@ package com.example.poul.bloodykeras;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -37,6 +36,13 @@ public class keratiatikachoices extends AppCompatActivity implements PopupMenu.O
     public void applicationScreen(View view){
         // Intent intent = new Intent(this, LoginScreen.class);
         Intent intent = new Intent(this, ApplicationScreen.class);
+        startActivity(intent);
+
+    }
+
+    public void pieChartScreen(View view){
+        // Intent intent = new Intent(this, LoginScreen.class);
+        Intent intent = new Intent(this, PieChartScreen.class);
         startActivity(intent);
 
     }

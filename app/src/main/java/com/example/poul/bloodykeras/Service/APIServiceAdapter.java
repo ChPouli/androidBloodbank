@@ -1,5 +1,6 @@
 package com.example.poul.bloodykeras.Service;
 
+import com.example.poul.bloodykeras.Model.Bloodbag;
 import com.example.poul.bloodykeras.Model.Donor;
 import com.example.poul.bloodykeras.Model.Patient;
 import com.example.poul.bloodykeras.Model.SessionM;
@@ -48,6 +49,12 @@ public class APIServiceAdapter {
                .getPatients().subscribeOn(Schedulers.newThread())
                .observeOn(AndroidSchedulers.mainThread());
    }
+
+    public Observable<List<Bloodbag>> getAllBloodbags() {
+        return retrofit.create(APIService.class)
+                .getAllBloodbags().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
     public Observable<List<User>> authenticate(String Username, String Password) {
         return retrofit.create(APIService.class)
                 .authenticate(Username, Password).subscribeOn(Schedulers.newThread())
@@ -115,7 +122,7 @@ public class APIServiceAdapter {
     }
 
 
-    public Observable<Void> addNewBag(String bagtype,String anticoagulant, int volume, int idSession, String tagRfid){
+    public Observable<Void> addNewBag(String bagtype,String anticoagulant, String volume, int idSession, String tagRfid){
 
         return retrofit.create(APIService.class)
                         .addNewBag(bagtype,anticoagulant,volume,idSession,tagRfid)

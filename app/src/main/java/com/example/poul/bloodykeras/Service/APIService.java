@@ -1,5 +1,6 @@
 package com.example.poul.bloodykeras.Service;
 
+import com.example.poul.bloodykeras.Model.Bloodbag;
 import com.example.poul.bloodykeras.Model.Donor;
 import com.example.poul.bloodykeras.Model.Patient;
 import com.example.poul.bloodykeras.Model.SessionM;
@@ -69,7 +70,11 @@ public interface APIService {
     @FormUrlEncoded
     @POST("/AddNewBag.php")
     Observable<Void> addNewBag(@Field("Bagtype") String Bagtype,@Field("Anticoagulant") String Anticoagulant,
-                               @Field("Volume") int Volume, @Field("IdSession") int IdSession,
+                               @Field("Volume") String Volume, @Field("IdSession") int IdSession,
                                @Field("TagRfid") String TagRfid);
+
+
+    @GET("/GetAllBloodbags.php")
+    Observable<List<Bloodbag>> getAllBloodbags();
 }
 

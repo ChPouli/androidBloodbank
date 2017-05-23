@@ -28,7 +28,12 @@
         <activity android:name=".PatientSearch" />
         <activity android:name=".NewBag" />
         <activity android:name=".ApplicationScreen" />
-        <activity android:name=".UpdateBag"></activity>
+        <activity android:name=".UpdateBag" />
+        <activity
+            android:name=".NDchoices"
+            android:label="@string/title_activity_ndchoices"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PieChartScreen"></activity>
     </application>
 
 </manifest>

@@ -3,24 +3,32 @@ package com.example.poul.bloodykeras;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.poul.bloodykeras.Adapters.ResultDonorSearch;
 import com.example.poul.bloodykeras.Model.Donor;
 import com.example.poul.bloodykeras.Service.APIServiceAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
 
 public class DonorSearch extends AppCompatActivity {
 
-private int iduser;
+    private int iduser;
     private int iddonor;
 
     private EditText ATD;
+
+    RecyclerView recyclerView;
+    ResultDonorSearch adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +65,16 @@ private int iduser;
             public void onNext(List<Donor> donors) {
                 if (donors.size() > 0) {
                         iddonor=donors.get(0).getId();
-                    Toast.makeText(DonorSearch.this, donors.get(0).getFname() + " "
-                            + iduser + " " + donors.get(0).getId(), Toast.LENGTH_SHORT).show();
+
+                    recyclerView = (RecyclerView) findViewById(R.id.recyclerviewDonorSearch);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(DonorSearch.this));
+                    adapter = new ResultDonorSearch(donors, R.layout.donor_search_result, getApplicationContext());
+                    recyclerView.setAdapter(adapter);
+
                 }
                 else
                     Toast.makeText(DonorSearch.this, "No Donor",Toast.LENGTH_SHORT).show();
+
             }
         });
     }

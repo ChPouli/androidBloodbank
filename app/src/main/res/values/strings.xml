@@ -13,4 +13,10 @@
         <item>CPDA1</item>
         <item>SAG-M</item>
     </string-array>
+    <string name="title_activity_navigation_dchoices_screen">NavigationDChoicesScreen</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_ndchoices">NDchoices</string>
+    <string name="title_activity_pie_chart">PieChart</string>
 </resources>
