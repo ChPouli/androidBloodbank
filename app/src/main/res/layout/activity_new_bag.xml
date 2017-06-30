@@ -136,6 +136,9 @@
         android:text="Add bloodbag"
         android:id="@+id/AddbloodbagButton"
         android:layout_gravity="right"
+        android:background="@drawable/button_selector"
         android:onClick="addNewBag"/>
+
+
 
 </LinearLayout>
