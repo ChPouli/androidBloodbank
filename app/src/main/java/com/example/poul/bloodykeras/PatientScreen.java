@@ -1,9 +1,11 @@
 package com.example.poul.bloodykeras;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,6 +43,10 @@ public class PatientScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_screen);
+
+        //enable back arrow toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         lname = (EditText)findViewById(R.id.LastNameEditText);
 
         fname = (EditText)findViewById(R.id.FirstNameEditText);
@@ -61,6 +67,24 @@ public class PatientScreen extends AppCompatActivity {
         fenotypos = (EditText)findViewById(R.id.FenotyposPEditText);
         antisomata = (EditText)findViewById(R.id.AntisomataPEditText);
     }
+
+    //region toolbar back arrow control functions
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        PatientScreen.this.finish();
+    }
+    //endregion
 
     public void addPatientBtn(View view){
        

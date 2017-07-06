@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 //Integer.toString(users.size())
                             Toast.makeText(MainActivity.this, users.get(0).getFname() + " "
                                     + users.get(0).getId(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, keratiatikachoices.class);
+                            Intent intent = new Intent(MainActivity.this, NDchoices.class);
                             intent.putExtra("userid",users.get(0).getId());
                             startActivity(intent);}
                         else

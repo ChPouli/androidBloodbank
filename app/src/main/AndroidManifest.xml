@@ -7,7 +7,7 @@
     <uses-feature android:name="android.hardware.nfc" android:required="true" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -21,20 +21,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientScreen" />
+        <activity android:name=".PatientScreen"
+            android:parentActivityName=".NDchoices"/>
         <activity android:name=".keratiatikachoices" />
-        <activity android:name=".DonorProperties" />
-        <activity android:name=".Session" />
-        <activity android:name=".DonorSearch" />
-        <activity android:name=".PatientSearch" />
+        <activity android:name=".DonorProperties"
+            android:parentActivityName=".NDchoices"/>
+        <activity android:name=".Session"
+            android:parentActivityName=".DonorSearch"/>
+        <activity
+            android:name=".DonorSearch"
+            android:parentActivityName=".NDchoices"
+            />
+        <activity android:name=".PatientSearch"
+            android:parentActivityName=".NDchoices"
+            />
         <activity android:name=".NewBag" />
-        <activity android:name=".ApplicationScreen" />
-        <activity android:name=".UpdateBag" />
+        <activity android:name=".ApplicationScreen"
+            android:parentActivityName=".NDchoices" />
+        <activity android:name=".UpdateBag"
+            android:parentActivityName=".NDchoices" />
         <activity
             android:name=".NDchoices"
             android:label="@string/title_activity_ndchoices"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PieChartScreen"></activity>
+        <activity android:name=".PieChartScreen"
+            android:parentActivityName=".NDchoices">
+
+
+        </activity>
     </application>
 
 </manifest>

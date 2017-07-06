@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/navdonor"
             android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="Donor" />
+            android:title="Donor"
+            app:showAsAction="always"
+
+
+            />
+
+
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/navpatient"
             android:icon="@drawable/patient"
             android:title="Patient" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/navupdatebag"
             android:icon="@drawable/drop"
             android:title="Update Bag" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/navrequests"
             android:icon="@drawable/application"
-            android:title="Applications" />
+            android:title="Transfusion Requests" />
+        <item
+            android:id="@+id/navpie"
+            android:icon="@drawable/chart"
+            android:title="Chart" />
+        <item
+            android:id="@+id/navscannfc"
+            android:icon="@drawable/scannfc"
+            android:title="Scan Bloodbag" />
+        <item
+            android:id="@+id/navthistory"
+            android:icon="@drawable/thistory"
+            android:title="Transfusion's History" />
+
     </group>
 
 

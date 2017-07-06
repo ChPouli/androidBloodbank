@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import com.example.poul.bloodykeras.Service.APIServiceAdapter;
 
 import java.io.ByteArrayOutputStream;
@@ -28,6 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 
 import rx.Subscriber;
 
@@ -41,6 +41,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
     private EditText volume;
     private  EditText nfc;
     String timeStamp;
+    StringBuilder builder;
 
     NfcAdapter nfcAdapter;
 
@@ -70,14 +71,29 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
                 }
     }
 
+    //byte array to hex string converter
+    public static String byteArrayToHexString(final byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for(byte b : bytes){
+            sb.append(String.format("%02x", b&0xff));
+        }
+        return sb.toString();
+    }
+
     @Override
     protected void onNewIntent(Intent intent) {
 
 
         if (intent.hasExtra(NfcAdapter.EXTRA_TAG)) {
-            Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "NfcIntent!", Toast.LENGTH_SHORT).show();
 
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+            //pairnw to byte array me to uid
+            byte[] uid = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
+
+
+
+            Toast.makeText(NewBag.this, byteArrayToHexString(uid), Toast.LENGTH_SHORT).show();
             NdefMessage ndefMessage = createNdefMessage(timeStamp);
 
             writeNdefMessage(tag, ndefMessage);
@@ -159,7 +175,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
             ndefFormatable.connect();
             ndefFormatable.format(ndefMessage);
             ndefFormatable.close();
-            Toast.makeText(NewBag.this,"Tag written",Toast.LENGTH_LONG).show();
+           // Toast.makeText(NewBag.this,"Tag written",Toast.LENGTH_LONG).show();
 
         }catch (Exception e){
             Log.e("Format tag",e.getMessage());

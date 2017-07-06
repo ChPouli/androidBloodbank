@@ -1,9 +1,11 @@
 package com.example.poul.bloodykeras;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,6 +32,9 @@ public class Session extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
 
+        //enable back arrow toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent getextras=getIntent();
         iduser=getextras.getIntExtra("userid",0);
         iddonor=getextras.getIntExtra("donorid",0);
@@ -40,6 +45,24 @@ public class Session extends AppCompatActivity {
         status=(EditText)findViewById(R.id.sessionstatusEditText);
 
     }
+
+    //region toolbar back arrow control functions
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        Session.this.finish();
+    }
+    //endregion
 
     public  void addSession(View view){
         //Toast.makeText(Session.this,"user"+ iduser + " " + "donor"+ iddonor, Toast.LENGTH_LONG).show();

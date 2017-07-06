@@ -22,7 +22,7 @@ import rx.schedulers.Schedulers;
  */
 public class APIServiceAdapter {
     //Region properties
-    public static final String BASE_URL = "http://192.168.1.154:8888";
+    public static final String BASE_URL = "http://192.168.1.254:8888";
     private Retrofit retrofit;
     private Gson gson = new GsonBuilder().setLenient().create();
     //endregion

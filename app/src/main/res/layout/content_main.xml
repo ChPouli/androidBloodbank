@@ -52,4 +52,7 @@
         android:textColor="#FFFFFF"
         android:background="@drawable/button_selector"
         android:onClick="loginScreen"/>
+
+
+
 </RelativeLayout>
