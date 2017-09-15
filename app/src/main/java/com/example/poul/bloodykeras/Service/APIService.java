@@ -1,11 +1,13 @@
 package com.example.poul.bloodykeras.Service;
 
+import com.example.poul.bloodykeras.Model.Application;
 import com.example.poul.bloodykeras.Model.Bloodbag;
 import com.example.poul.bloodykeras.Model.Donor;
 import com.example.poul.bloodykeras.Model.Patient;
 import com.example.poul.bloodykeras.Model.SessionM;
 import com.example.poul.bloodykeras.Model.User;
 
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.http.Field;
@@ -73,8 +75,30 @@ public interface APIService {
                                @Field("Volume") String Volume, @Field("IdSession") int IdSession,
                                @Field("TagRfid") String TagRfid);
 
+    @FormUrlEncoded
+    @POST("/AddNewApplication.php")
+    Observable<Void> addNewApplication(@Field("IdPatient") int IdPatient,@Field("Quantity") String Quantity,
+                                       @Field("Clinic") String Clinic, @Field("EidosParagogou") String EidosParagogou
+            ,@Field("Priority") String Priority,
+                                       @Field("TransfusionDate") String TransfusionDate,@Field("ABO") String ABO,
+                                       @Field("Rh") String Rh);
+
 
     @GET("/GetAllBloodbags.php")
     Observable<List<Bloodbag>> getAllBloodbags();
+
+    @GET("/availableBags.php")
+    Observable<List<Bloodbag>> gamhsou();
+
+
+
+    @GET("/PendingApplications.php")
+    Observable<List<Application>> getAllApplications();
+
+    @FormUrlEncoded
+    @POST("/TransfusionExecution.php")
+    Observable<Void> ExecTrans(@Field("TagRfid") String TagRfid);
+
+
 }
 

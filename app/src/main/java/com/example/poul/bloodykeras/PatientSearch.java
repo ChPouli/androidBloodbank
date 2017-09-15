@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.view.ViewDebug;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.poul.bloodykeras.Adapters.PatientRVadapter;
+import com.example.poul.bloodykeras.Adapters.ResultDonorSearch;
 import com.example.poul.bloodykeras.Model.Patient;
 import com.example.poul.bloodykeras.Service.APIService;
 import com.example.poul.bloodykeras.Service.APIServiceAdapter;
@@ -22,6 +26,10 @@ import rx.Subscriber;
 public class PatientSearch extends AppCompatActivity {
 
     private EditText ATPa;
+    private int iduser;
+    private int idpatient;
+    RecyclerView recyclerView;
+    PatientRVadapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,9 @@ public class PatientSearch extends AppCompatActivity {
         //enable back arrow toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //pairnei id user apo prohgoymenh activity
+        Intent extraprev= getIntent();
+        iduser=extraprev.getIntExtra("userid",0);
         ATPa=(EditText)findViewById(R.id.SearchPatienteditText);
     }
     //region toolbar back arrow control functions
@@ -44,11 +55,7 @@ public class PatientSearch extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(true);
-        PatientSearch.this.finish();
-    }
+
     //endregion
 
     public void searchOnePatient(View view){
@@ -67,10 +74,12 @@ public class PatientSearch extends AppCompatActivity {
             public void onNext(List<Patient> patients) {
                 if (patients.size() > 0) {
 
-                    Toast.makeText(PatientSearch.this, patients.get(0).getLname() + " "+
-                                                        patients.get(0).getAT() + " "
-                                                        + Integer.toString(patients.size()),
-                                    Toast.LENGTH_SHORT).show();
+                    idpatient=patients.get(0).getId();
+
+                    recyclerView = (RecyclerView) findViewById(R.id.recyclerviewPatientSearch);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(PatientSearch.this));
+                    adapter = new PatientRVadapter(patients, R.layout.item_patient_search, getApplicationContext(),idpatient ,iduser);
+                    recyclerView.setAdapter(adapter);
 
                     }
                 else

@@ -1,8 +1,6 @@
 package com.example.poul.bloodykeras.Adapters;
 
-/**
- * Created by poul on 5/5/2017.
- */
+
         import android.content.Context;
         import android.content.Intent;
         import android.graphics.Color;
@@ -74,6 +72,7 @@ int row_index;
 
                 intent.putExtra("userid",iduser);
                 intent.putExtra("donorid", iddonor);
+
 
                 context.startActivity(intent);
 

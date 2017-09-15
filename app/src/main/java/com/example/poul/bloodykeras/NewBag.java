@@ -41,6 +41,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
     private EditText volume;
     private  EditText nfc;
     String timeStamp;
+    byte[] uid;
     StringBuilder builder;
 
     NfcAdapter nfcAdapter;
@@ -54,13 +55,16 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
         iddonor=getextras.getIntExtra("donorid",0);
         idsession=getextras.getIntExtra("sessionid",0);
         volume=(EditText)findViewById(R.id.volumenewbagEditText);
-        nfc=(EditText)findViewById(R.id.TagrfidnewbagEditText);
+
 
         //addItemsOnBagSpinner();
          timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         addItemsOnSpinners();
 
+        //nfc adapter
         nfcAdapter= NfcAdapter.getDefaultAdapter(this);
+
+        //nfc enable or disable check
         if(nfcAdapter !=null && nfcAdapter.isEnabled()){
            // Toast.makeText(NewBag.this,"nfc available ",Toast.LENGTH_LONG).show();
 
@@ -80,6 +84,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
         return sb.toString();
     }
 
+    //pianei array kai grafei mnm
     @Override
     protected void onNewIntent(Intent intent) {
 
@@ -89,12 +94,15 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
 
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             //pairnw to byte array me to uid
-            byte[] uid = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
+             uid = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
 
 
 
-            Toast.makeText(NewBag.this, byteArrayToHexString(uid), Toast.LENGTH_SHORT).show();
-            NdefMessage ndefMessage = createNdefMessage(timeStamp);
+            //Toast.makeText(NewBag.this, byteArrayToHexString(uid), Toast.LENGTH_SHORT).show();
+
+            String rec= timeStamp +" "+  iddonor +" "+ volume.getText().toString()+ " "+anti;
+           // Toast.makeText(NewBag.this,rec,Toast.LENGTH_LONG).show();
+            NdefMessage ndefMessage = createNdefMessage(rec);
 
             writeNdefMessage(tag, ndefMessage);
         }
@@ -148,7 +156,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
     }
 
 
-    //nf enable disable functions
+    //region nf enable disable functions
     private void enableForegroundDispatchSystem(){
         Intent intent= new Intent( NewBag.this,NewBag.class);
         intent.addFlags(intent.FLAG_RECEIVER_REPLACE_PENDING);
@@ -160,6 +168,9 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
     private void disableForegroundDispatchSystem(){
         nfcAdapter.disableForegroundDispatch(this);
     }
+    //endregion
+
+
 
     //nfc format write functions
     private void formatTag(Tag tag, NdefMessage ndefMessage){
@@ -247,7 +258,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
 
 public  void addNewBag(View view){
 
-    APIServiceAdapter.getInstance().addNewBag(bagtype,anti,volume.getText().toString(),idsession,nfc.getText().toString()).subscribe(new Subscriber<Void>() {
+    APIServiceAdapter.getInstance().addNewBag(bagtype,anti,volume.getText().toString(),idsession, byteArrayToHexString(uid)).subscribe(new Subscriber<Void>() {
         @Override
         public void onCompleted() {
 
@@ -260,7 +271,10 @@ public  void addNewBag(View view){
 
         @Override
         public void onNext(Void aVoid) {
-                    Toast.makeText(NewBag.this, "kaleeeee" + idsession ,Toast.LENGTH_LONG).show();
+
+            Toast.makeText(NewBag.this, "Blood Bag succesfully inserted", Toast.LENGTH_LONG).show();
+          finish();
+
         }
     });
 

@@ -98,7 +98,8 @@ public class Session extends AppCompatActivity {
                                     public void onNext(List<SessionM> sessionMs) {
                                        // Toast.makeText(Session.this,"panagia moy" + sessionMs.get(0).getId(),Toast.LENGTH_LONG).show();
                                         idsession=sessionMs.get(0).getId();
-                                        Toast.makeText(Session.this,"panagia moy" + idsession,Toast.LENGTH_LONG).show();
+
+                                        Toast.makeText(Session.this,"Session successfully inserted with id " + idsession,Toast.LENGTH_LONG).show();
                                     }
                                 });
                     }

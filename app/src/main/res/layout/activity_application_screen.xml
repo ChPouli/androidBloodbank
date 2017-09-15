@@ -51,13 +51,17 @@
                 />
 
 
-            <EditText
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TransfusionDayEditText"
-                android:inputType="date"
+                android:id="@+id/dateBtn"
+                android:onClick="showDatePickerDialog"
+                style="@android:style/Widget.Holo.Spinner"
+               />
 
-                />
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -100,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/Quantity"
-                android:text="Quantity: "
+                android:text="Units: "
                 android:textSize="16dp"
                 android:textStyle="bold"
                 />
@@ -110,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/QuantityEditText"
-                android:inputType="numberDecimal"
+                android:inputType="number"
 
                 />
         </LinearLayout>
@@ -180,8 +184,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/IdPatient"
-                android:text="Patient's Id: "
+                android:id="@+id/appABO"
+                android:text="ABO: "
                 android:textSize="16dp"
                 android:textStyle="bold"
                 />
@@ -190,17 +194,46 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/IdPatientEditText"
-                android:inputType="numberDecimal"
+                android:id="@+id/appABOEditText"
+                android:inputType="text"
 
                 />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10sp"
+            android:layout_marginTop="8dp"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/appRh"
+                android:text="Rh: "
+                android:textSize="16dp"
+                android:textStyle="bold"
+                />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appRhEditText"
+                android:inputType="text"
+
+                />
+        </LinearLayout>
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add \n Application"
             android:id="@+id/AddApp"
+            android:onClick="addNewApplication"
             android:layout_gravity="right" />
     </LinearLayout>
 

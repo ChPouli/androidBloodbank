@@ -150,23 +150,7 @@
             android:layout_marginTop="8dp"
 
             >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TagRfid"
-            android:text="TagRfid: "
-            android:textSize="16dp"
-            android:textStyle="bold"
-            />
 
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/TagrfidupdatebagEditText"
-            android:inputType="text"
-
-            />
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

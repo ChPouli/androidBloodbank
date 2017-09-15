@@ -4,7 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
-    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -21,34 +25,45 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientScreen"
-            android:parentActivityName=".NDchoices"/>
+        <activity
+            android:name=".PatientScreen"
+            android:parentActivityName=".NDchoices" />
         <activity android:name=".keratiatikachoices" />
-        <activity android:name=".DonorProperties"
-            android:parentActivityName=".NDchoices"/>
-        <activity android:name=".Session"
-            android:parentActivityName=".DonorSearch"/>
+        <activity
+            android:name=".DonorProperties"
+            android:parentActivityName=".NDchoices" />
+        <activity
+            android:name=".Session"
+            android:parentActivityName=".DonorSearch" />
         <activity
             android:name=".DonorSearch"
-            android:parentActivityName=".NDchoices"
-            />
-        <activity android:name=".PatientSearch"
-            android:parentActivityName=".NDchoices"
-            />
-        <activity android:name=".NewBag" />
-        <activity android:name=".ApplicationScreen"
             android:parentActivityName=".NDchoices" />
-        <activity android:name=".UpdateBag"
+        <activity
+            android:name=".PatientSearch"
+            android:parentActivityName=".NDchoices" />
+        <activity android:name=".NewBag" />
+        <activity
+            android:name=".ApplicationScreen"
+            android:parentActivityName=".NDchoices" />
+        <activity
+            android:name=".UpdateBag"
             android:parentActivityName=".NDchoices" />
         <activity
             android:name=".NDchoices"
             android:label="@string/title_activity_ndchoices"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PieChartScreen"
-            android:parentActivityName=".NDchoices">
-
-
-        </activity>
+        <activity
+            android:name=".PieChartScreen"
+            android:parentActivityName=".NDchoices" />
+        <activity
+            android:name=".TransRequests"
+            android:parentActivityName=".NDchoices" />
+        <activity
+            android:name=".ScanNFC"
+            android:parentActivityName=".NDchoices" />
+        <activity android:name=".ExecuteTransfusion"
+            android:parentActivityName=".TransRequests"></activity>
     </application>
 
 </manifest>

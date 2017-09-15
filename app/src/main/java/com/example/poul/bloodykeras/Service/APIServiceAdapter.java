@@ -1,5 +1,6 @@
 package com.example.poul.bloodykeras.Service;
 
+import com.example.poul.bloodykeras.Model.Application;
 import com.example.poul.bloodykeras.Model.Bloodbag;
 import com.example.poul.bloodykeras.Model.Donor;
 import com.example.poul.bloodykeras.Model.Patient;
@@ -8,6 +9,7 @@ import com.example.poul.bloodykeras.Model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Retrofit;
@@ -22,7 +24,7 @@ import rx.schedulers.Schedulers;
  */
 public class APIServiceAdapter {
     //Region properties
-    public static final String BASE_URL = "http://192.168.1.254:8888";
+    public static final String BASE_URL = "http://192.168.1.65:8888";
     private Retrofit retrofit;
     private Gson gson = new GsonBuilder().setLenient().create();
     //endregion
@@ -125,9 +127,36 @@ public class APIServiceAdapter {
     public Observable<Void> addNewBag(String bagtype,String anticoagulant, String volume, int idSession, String tagRfid){
 
         return retrofit.create(APIService.class)
-                        .addNewBag(bagtype,anticoagulant,volume,idSession,tagRfid)
+                        .addNewBag(bagtype, anticoagulant, volume, idSession, tagRfid)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread());
+    }
+    public Observable<Void> addNewApplication(int idPatient, String quantity,String clinic, String eidosParagogou,
+                                               String priority,String transfusionDate,String abo,String rh){
+        return retrofit.create(APIService.class)
+                .addNewApplication(idPatient, quantity, clinic, eidosParagogou, priority, transfusionDate, abo, rh)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
+    public Observable<List<Application>> getAllApplications() {
+        return retrofit.create(APIService.class)
+                .getAllApplications().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+    public Observable<List<Bloodbag>> gamhsou() {
+        return retrofit.create(APIService.class)
+                .gamhsou().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<Void> ExecTrans(String tagrfid){
+
+        return retrofit.create(APIService.class)
+                .ExecTrans(tagrfid)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+
     }
 
 }

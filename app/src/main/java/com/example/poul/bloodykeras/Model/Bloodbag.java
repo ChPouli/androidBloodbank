@@ -10,7 +10,7 @@ public class Bloodbag {
 
     //region Properties
     private int Id;
-    private Timestamp Date;
+    private String Date;
     private String Bagtype;
     private String Anticoagulant;
     private String Volume;
@@ -24,7 +24,7 @@ public class Bloodbag {
         //endregion
 
     //region Constructors
-    public Bloodbag(int id, Timestamp date, String bagtype, String anticoagulant, String volume, String kind, String bloodtype, String rh, int idSession, String checked, String tagRfid, String available) {
+    public Bloodbag(int id, String date, String bagtype, String anticoagulant, String volume, String kind, String bloodtype, String rh, int idSession, String checked, String tagRfid, String available) {
         Id = id;
         Date = date;
         Bagtype = bagtype;
@@ -55,11 +55,11 @@ public class Bloodbag {
         Id = id;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return Date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         Date = date;
     }
 

@@ -12,11 +12,19 @@
 
             />
 
-
+        <item
+            android:id="@+id/navadddonor"
+            android:icon="@drawable/patient"
+            android:title="Add Donor" />
         <item
             android:id="@+id/navpatient"
             android:icon="@drawable/patient"
             android:title="Patient" />
+        <item
+            android:id="@+id/navaddpatient"
+            android:icon="@drawable/patient"
+            android:title="Add Patient" />
+
         <item
             android:id="@+id/navupdatebag"
             android:icon="@drawable/drop"

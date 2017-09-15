@@ -1,5 +1,6 @@
 package com.example.poul.bloodykeras.Model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 
@@ -13,10 +14,12 @@ public class Application {
     private String EidosParagogou;
     private String Status;
     private String Priority;
-    private Timestamp TransfusionDate;
+    private String TransfusionDate;
+    private String Rh;
+    private String ABO;
 
     //region Constructors
-    public Application(int id, int idPatient, int quantity, Timestamp date, String clinic, String eidosParagogou, String status, Timestamp transfusionDate, String priority) {
+    public Application(int id, int idPatient, int quantity, Timestamp date, String clinic, String eidosParagogou, String status, String transfusionDate, String priority,String abo,String rh) {
         Id = id;
         IdPatient = idPatient;
         Quantity = quantity;
@@ -26,11 +29,30 @@ public class Application {
         Status = status;
         TransfusionDate = transfusionDate;
         Priority = priority;
+        ABO=abo;
+        Rh=rh;
     }
+
+
 
     public Application() {
     }
 //endregion
+
+    public void setRh(String rh) {
+        Rh = rh;
+    }
+
+    public void setABO(String ABO) {
+        this.ABO = ABO;
+    }
+    public String getRh() {
+        return Rh;
+    }
+
+    public String getABO() {
+        return ABO;
+    }
 
     //region Getters-Setters
     public int getId() {
@@ -97,11 +119,11 @@ public class Application {
         Priority = priority;
     }
 
-    public Timestamp getTransfusionDate() {
+    public String getTransfusionDate() {
         return TransfusionDate;
     }
 
-    public void setTransfusionDate(Timestamp transfusionDate) {
+    public void setTransfusionDate(String transfusionDate) {
         TransfusionDate = transfusionDate;
     }
     //endregion

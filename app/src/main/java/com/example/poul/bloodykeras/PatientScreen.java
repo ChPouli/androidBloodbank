@@ -107,7 +107,7 @@ public class PatientScreen extends AppCompatActivity {
 
                     @Override
                     public void onNext(Void aVoid) {
-                        Toast.makeText(PatientScreen.this,"Successfully insert",Toast.LENGTH_LONG).show();
+                        Toast.makeText(PatientScreen.this,"Successfully inserted Patient",Toast.LENGTH_LONG).show();
 
 
                     }

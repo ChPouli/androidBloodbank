@@ -64,11 +64,18 @@ public class MainActivity extends AppCompatActivity {
 //Integer.toString(users.size())
                             Toast.makeText(MainActivity.this, users.get(0).getFname() + " "
                                     + users.get(0).getId(), Toast.LENGTH_SHORT).show();
+
+                            //gia na ka8arisei edit text wste otan gyrnw me finish na nai ka8ara
+                            username.getText().clear();
+                            password.getText().clear();
                             Intent intent = new Intent(MainActivity.this, NDchoices.class);
                             intent.putExtra("userid",users.get(0).getId());
+
                             startActivity(intent);}
                         else
-                            Toast.makeText(MainActivity.this, "LAthos",Toast.LENGTH_SHORT).show();
+                            username.getText().clear();
+                             password.getText().clear();
+                            Toast.makeText(MainActivity.this, "Wrong username or password!\nTry again.",Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(MainActivity.this, "You must login first",Toast.LENGTH_LONG).show();
             return true;
         }
 

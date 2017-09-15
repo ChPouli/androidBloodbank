@@ -1,9 +1,12 @@
 package com.example.poul.bloodykeras;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +18,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import com.example.poul.bloodykeras.Model.Application;
+import com.example.poul.bloodykeras.Model.Patient;
+import com.example.poul.bloodykeras.Service.APIServiceAdapter;
+
+import java.util.List;
+
+import rx.Subscriber;
 
 public class NDchoices extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -87,9 +98,29 @@ public class NDchoices extends AppCompatActivity
         int id = item.getItemId();
 
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        //log out handling by alert box
+        if (id == R.id.logout) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Are you sure,You want to log out?");
+                    alertDialogBuilder.setPositiveButton("yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                   finish();
+
+                                }
+                            });
+
+            alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                            return;
+                }
+            });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -107,6 +138,7 @@ public class NDchoices extends AppCompatActivity
                 //pigeno o8oni anazitisis doti kai toy klhrwnomw to id tou user
             Intent intent = new Intent(this, DonorSearch.class);
             intent.putExtra("userid",iduser);
+
             this.startActivity(intent);
 
 
@@ -124,8 +156,11 @@ public class NDchoices extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.navrequests) {
-             intent = new Intent(this, ApplicationScreen.class);
+            intent = new Intent(this, TransRequests.class);
+            intent.putExtra("userid",iduser);
             startActivity(intent);
+
+
 
         } else if (id == R.id.navpie){
             intent = new Intent(this, PieChartScreen.class);
@@ -133,10 +168,20 @@ public class NDchoices extends AppCompatActivity
 
 
         } else if ( id == R.id.navscannfc){
+            intent = new Intent(this, ScanNFC.class);
+            startActivity(intent);
 
 
         } else if (id == R.id.navthistory){
 
+        }
+        else if(id ==R.id.navadddonor){
+            intent = new Intent(this, DonorProperties.class);
+            startActivity(intent);
+        }
+        else if (id==R.id.navaddpatient){
+            intent = new Intent(this, PatientScreen.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
