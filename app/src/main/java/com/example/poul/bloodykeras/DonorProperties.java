@@ -77,7 +77,7 @@ public class DonorProperties extends AppCompatActivity {
 
     public void addDonorBtn (View view){
         APIServiceAdapter.getInstance().addDonor(lname.getText().toString(),fname.getText().toString(),
-                                                fathername.getText().toString(),byear.getInputType(),phone.getInputType(),
+                                                fathername.getText().toString(),byear.getText().toString(),phone.getText().toString(),
                                                 address.getText().toString(), AT.getText().toString(),occupation.getText().toString()
                                                 ,birthplace.getText().toString(),bloodtype.getText().toString(),
                                                     Rh.getText().toString())
@@ -95,7 +95,7 @@ public class DonorProperties extends AppCompatActivity {
             @Override
             public void onNext(Void aVoid) {
                 Toast.makeText(DonorProperties.this, "Successfully inserted Donor",Toast.LENGTH_LONG).show();
-
+                    finish();
             }
         });
 

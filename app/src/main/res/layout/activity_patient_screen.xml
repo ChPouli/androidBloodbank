@@ -377,6 +377,8 @@
                 android:text="Add Patient"
                 android:id="@+id/buttonNewPatient"
                 android:onClick="addPatientBtn"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_selector"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />

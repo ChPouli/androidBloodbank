@@ -10,8 +10,8 @@ public class Donor {
     private String Lname;
     private String Fname;
     private String FatherName;
-    private int   BirthYear;
-    private int  Phone;
+    private String   BirthYear;
+    private String  Phone;
     private String Address;
     private String AT;
     private String Occupation;
@@ -21,7 +21,7 @@ public class Donor {
 //endregion
 
     //region Constructors
-    public Donor(int id, String lname, String fname, String fatherName, int birthYear, int phone, String address, String AT, String occupation, String birthPlace, String bloodtype, String rh) {
+    public Donor(int id, String lname, String fname, String fatherName, String birthYear, String phone, String address, String AT, String occupation, String birthPlace, String bloodtype, String rh) {
         Id = id;
         Lname = lname;
         Fname = fname;
@@ -59,11 +59,11 @@ public class Donor {
         return FatherName;
     }
 
-    public int getBirthYear() {
+    public String getBirthYear() {
         return BirthYear;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
@@ -110,11 +110,11 @@ public class Donor {
         FatherName = fatherName;
     }
 
-    public void setBirthYear(int birthYear) {
+    public void setBirthYear(String birthYear) {
         BirthYear = birthYear;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         Phone = phone;
     }
 

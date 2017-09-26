@@ -72,10 +72,13 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("userid",users.get(0).getId());
 
                             startActivity(intent);}
+
                         else
+
+                            Toast.makeText(MainActivity.this, "Wrong username or password!\nTry again.", Toast.LENGTH_SHORT).show();
                             username.getText().clear();
                              password.getText().clear();
-                            Toast.makeText(MainActivity.this, "Wrong username or password!\nTry again.",Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

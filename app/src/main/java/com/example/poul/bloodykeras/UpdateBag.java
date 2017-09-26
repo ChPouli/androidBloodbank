@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,10 +39,17 @@ public class UpdateBag extends AppCompatActivity {
     private EditText rh;
     private EditText checked;
 
+
     private EditText available;
     NfcAdapter nfcAdapter;
     byte[] uid;
     String oldNFCdata;
+    String avail;
+    String verif;
+    Boolean checkBoxStateVer;
+    Boolean checkBoxStateAv;
+    CheckBox chkBoxVerify;
+    CheckBox chkBoxAvailable;
 
 
     @Override
@@ -55,9 +63,16 @@ public class UpdateBag extends AppCompatActivity {
         kind = (EditText) findViewById(R.id.kindupdatebagEditText);
         bloodtype = (EditText) findViewById(R.id.bloodtypebagEditText);
         rh = (EditText) findViewById(R.id.RhupdatebagEditText);
-        checked = (EditText) findViewById(R.id.checkedupdatebagEditText);
 
-        available = (EditText) findViewById(R.id.availableupdatebagEditText);
+
+
+         chkBoxVerify = (CheckBox) findViewById(R.id.checkBoxVerify);
+
+         chkBoxAvailable = (CheckBox) findViewById(R.id.checkBoxAvailable);
+        chkBoxAvailable.setChecked(false);
+        chkBoxVerify.setChecked(false);
+
+
 
         //nfc adapter
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -281,9 +296,24 @@ public class UpdateBag extends AppCompatActivity {
     public void updateBagBtn(View view) {
 
 
+//control check box results
+        if(chkBoxAvailable.isChecked()==true){
+            avail="1";
+        }else {
+            avail="0";
+        }
+
+        if(chkBoxVerify.isChecked()==true){
+            verif="1";
+        }else {
+            verif="0";
+        }
+
+
+
         APIServiceAdapter.getInstance().updateBag(kind.getText().toString(), bloodtype.getText().toString(), rh.getText().toString()
-                , checked.getText().toString(), byteArrayToHexString(uid),
-                available.getText().toString())
+                , verif, byteArrayToHexString(uid),
+                avail)
                 .subscribe(new Subscriber<Void>() {
                     @Override
                     public void onCompleted() {
@@ -303,17 +333,7 @@ public class UpdateBag extends AppCompatActivity {
                     }
                 });
     }
-/*
-//fragment gia nfc attach
-    public static class NfcAttachFragment extends Fragment {
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.dialog_attach_nfc, container, false);
-        }
-    }
-    */
+
 
 
 }

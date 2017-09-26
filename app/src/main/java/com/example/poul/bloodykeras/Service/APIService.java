@@ -45,8 +45,8 @@ public interface APIService {
     @FormUrlEncoded
     @POST("/AddDonor.php")
     Observable<Void>  addDonor(@Field("Lname") String Lname, @Field("Fname") String Fname ,
-                               @Field("FatherName") String FatherName , @Field("BirthYear") int BirthYear,
-                               @Field("Phone") int Phone, @Field("Address") String Address,
+                               @Field("FatherName") String FatherName , @Field("BirthYear") String BirthYear,
+                               @Field("Phone") String Phone, @Field("Address") String Address,
                                @Field("AT") String AT, @Field("Occupation") String Occupation,
                                @Field("BirthPlace") String BirthPlace , @Field("BloodType") String BloodType,
                                @Field("Rh") String Rh );

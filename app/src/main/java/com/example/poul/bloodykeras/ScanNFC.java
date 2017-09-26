@@ -23,8 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class ScanNFC extends AppCompatActivity {
 

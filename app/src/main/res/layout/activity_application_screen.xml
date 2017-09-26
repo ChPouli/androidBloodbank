@@ -233,6 +233,8 @@
             android:layout_height="wrap_content"
             android:text="Add \n Application"
             android:id="@+id/AddApp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_selector"
             android:onClick="addNewApplication"
             android:layout_gravity="right" />
     </LinearLayout>

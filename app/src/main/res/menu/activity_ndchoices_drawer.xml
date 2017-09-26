@@ -2,28 +2,39 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="single">
-        <item
+    <group android:id="@+id/group1"
+        android:checkableBehavior="single"
+        >
+
+            <item
             android:id="@+id/navdonor"
-            android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="Donor"
+            android:icon="@drawable/search"
+            android:title="Search Donor"
             app:showAsAction="always"
 
 
             />
 
-        <item
+            <item
             android:id="@+id/navadddonor"
-            android:icon="@drawable/patient"
+            android:icon="@drawable/donor"
             android:title="Add Donor" />
+
+        </group>
+
+    <group android:id="@+id/group2" android:checkableBehavior="single">
+
         <item
             android:id="@+id/navpatient"
-            android:icon="@drawable/patient"
-            android:title="Patient" />
+            android:icon="@drawable/search"
+            android:title="Search Patient" />
         <item
             android:id="@+id/navaddpatient"
             android:icon="@drawable/patient"
             android:title="Add Patient" />
+        </group>
+
+    <group android:id="@+id/group4" android:checkableBehavior="single">
 
         <item
             android:id="@+id/navupdatebag"
@@ -46,8 +57,8 @@
             android:icon="@drawable/thistory"
             android:title="Transfusion's History" />
 
-    </group>
 
+    </group>
 
 
 </menu>

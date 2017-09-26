@@ -132,6 +132,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add session"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_selector"
         android:onClick="addSession"
         android:id="@+id/addSessionBtn" />
 
@@ -139,6 +141,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create \n Bloodbag"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_selector"
         android:id="@+id/createBagbutton"
         android:onClick="createBag" />
 

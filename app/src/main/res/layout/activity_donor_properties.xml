@@ -32,7 +32,7 @@
         android:layout_height="1dp"
         android:background="#f5797878"/>
 
-        <LinearLayout
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -41,40 +41,22 @@
 
             >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/FirstName"
-                android:text="First Name: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/FirstNameEditText"
                 android:inputType="text"
+                android:hint="First name:"
 
                 />
-        </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/LastName"
-                android:text="Last Name: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -82,49 +64,34 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/LastNameEditText"
                 android:inputType="text"
+                android:hint="Last Name:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/FatherName"
-                android:text="Father Name: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/FatherNameEditText"
                 android:inputType="text"
+                android:hint="Father Name:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/BirthYear"
-                android:text="Birth Year: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -132,24 +99,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/BirthYearEditText"
                 android:inputType="number"
+                android:hint="Birth Year:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/AT"
-                android:text="Id number: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -157,49 +116,32 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/IdEditText"
                 android:inputType="text"
+                android:hint="Id number:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Address"
-                android:text="Address: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/AddressEditText"
                 android:inputType="text"
+                android:hint="Address:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Telephone"
-                android:text="Phone number: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -207,25 +149,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/TelephoneEditText"
                 android:inputType="number"
+                android:hint="Phone number:"
 
                 />
 
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/BirthPlace"
-                android:text="Birth Place: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -233,25 +167,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/BirthPlaceEditText"
                 android:inputType="text"
+                android:hint="Birth Place:"
 
 
                 />
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Job"
-                android:text="Job: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -259,53 +185,34 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/JobEditText"
                 android:inputType="text"
+                android:hint="Job:"
 
                 />
-        </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
 
-
-
-        <LinearLayout
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ABO"
-                android:text="Blood type: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/bloodtypeEditText"
                 android:inputType="text"
+                android:hint="Blood type:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Rh"
-                android:text="Rh: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -313,9 +220,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/RhEditText"
                 android:inputType="text"
+                android:hint="Rh:"
 
                 />
-        </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
         <Button
             android:layout_width="wrap_content"
@@ -323,6 +231,8 @@
             android:text="Add Donor"
             android:id="@+id/buttonNewDonor"
             android:onClick="addDonorBtn"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_selector"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

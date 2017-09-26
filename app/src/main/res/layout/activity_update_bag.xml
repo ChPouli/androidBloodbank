@@ -22,7 +22,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/messageupdatebaginfo"
-            android:text="Update BloodBag"
+            android:text="Update bloodBag info"
             android:textSize="17sp"
             android:textAlignment="center"
 
@@ -32,35 +32,29 @@
             android:layout_height="1dp"
             android:background="#f5797878"/>
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             android:layout_marginTop="8dp"
-
             >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/kindupdatebag"
-                android:text="kind "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
+
 
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/kindupdatebagEditText"
+                android:hint="Kind"
                 android:inputType="text"
 
                 />
-        </LinearLayout>
 
-        <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -68,26 +62,18 @@
             android:layout_marginTop="8dp"
 
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/bloodtypebag"
-                android:text="Bloodtype: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/bloodtypebagEditText"
                 android:inputType="text"
+                android:hint="Bloodtype"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -95,15 +81,6 @@
             android:layout_marginTop="8dp"
 
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Rhupdatebag"
-                android:text="Rh: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
 
 
             <EditText
@@ -111,79 +88,38 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/RhupdatebagEditText"
                 android:inputType="text"
+                android:hint="Rh"
 
                 />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
+        </android.support.design.widget.TextInputLayout>
+
+
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            android:layout_marginTop="8dp"
-
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/checkedbag"
-                android:text="Verify checked: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/checkedupdatebagEditText"
-                android:inputType="number"
-
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:text="Verify"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:id="@+id/checkBoxVerify" />
+        <CheckBox
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            android:layout_marginTop="8dp"
-
-            >
-
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            android:layout_marginTop="8dp"
-
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/available"
-                android:text="Available: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
+            android:text="Available"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:id="@+id/checkBoxAvailable" />
 
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/availableupdatebagEditText"
-                android:inputType="number"
-
-                />
-        </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update Bag"
             android:id="@+id/updatebagBtn"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_selector"
             android:onClick="updateBagBtn"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>

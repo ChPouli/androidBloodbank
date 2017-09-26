@@ -88,8 +88,8 @@ public class APIServiceAdapter {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Void> addDonor(String lname, String fname, String fathername, int birthYear,
-                                     int phone, String address, String AT, String occupation,
+    public Observable<Void> addDonor(String lname, String fname, String fathername, String birthYear,
+                                     String phone, String address, String AT, String occupation,
                                      String birthplace, String bloodtype, String rh) {
 
         return retrofit.create(APIService.class)

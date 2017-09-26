@@ -74,7 +74,7 @@
             android:layout_alignParentEnd="true" />
     </LinearLayout>
 
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -82,14 +82,6 @@
         android:layout_marginTop="8dp"
 
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Volumebag"
-            android:text="Volume: "
-            android:textSize="16dp"
-            android:textStyle="bold"
-            />
 
 
         <EditText
@@ -97,9 +89,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/volumenewbagEditText"
             android:inputType="number"
+            android:hint="volume"
 
             />
-    </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
 
 
