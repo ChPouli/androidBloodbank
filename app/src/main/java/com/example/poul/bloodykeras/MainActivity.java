@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
                         if (users.size() > 0) {
 //Integer.toString(users.size())
-                            Toast.makeText(MainActivity.this, users.get(0).getFname() + " "
-                                    + users.get(0).getId(), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(MainActivity.this, users.get(0).getFname() + " "
+                             //       + users.get(0).getId(), Toast.LENGTH_SHORT).show();
 
                             //gia na ka8arisei edit text wste otan gyrnw me finish na nai ka8ara
                             username.getText().clear();

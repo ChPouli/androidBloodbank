@@ -16,135 +16,83 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/messagePatientinfo"
-        android:text="Enter session's info"
+        android:text="Fill out session's info"
         android:textSize="17sp"
         android:textAlignment="center"
 
         />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#f5797878"/>
 
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="10sp"
         >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pressure"
-            android:text="Blood pressure: "
-            android:textSize="16dp"
-            android:textStyle="bold"
-            />
-
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/PressureEditText"
             android:inputType="number"
+            android:hint="Blood pressure:"
 
             />
-    </LinearLayout>
-    <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="10sp"
         >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/aimatokriti"
-            android:text="Hb/Ht: "
-            android:textSize="16dp"
-            android:textStyle="bold"
-            />
-
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/aimatokritiEditText"
             android:inputType="number"
+            android:hint="Hb/Ht:"
 
             />
-    </LinearLayout>
-    <LinearLayout
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="10sp"
         >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Reactions"
-            android:text="Reactions: "
-            android:textSize="16dp"
-            android:textStyle="bold"
-            />
-
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/reactionsEditText"
             android:inputType="text"
+            android:hint="Reactions: "
 
             />
-    </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10sp"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sessionStatus"
-            android:text="Status: "
-            android:textSize="16dp"
-            android:textStyle="bold"
-            />
-
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sessionstatusEditText"
-            android:inputType="number"
-
-            />
-    </LinearLayout>
+        android:text="Failure"
+       android:layout_marginTop="40dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:id="@+id/checkBoxStatus" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add session"
+        android:layout_marginTop="60dp"
         android:textColor="#FFFFFF"
+        android:layout_gravity="right"
         android:background="@drawable/button_selector"
         android:onClick="addSession"
         android:id="@+id/addSessionBtn" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create \n Bloodbag"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/button_selector"
-        android:id="@+id/createBagbutton"
-        android:onClick="createBag" />
+
 
 
 

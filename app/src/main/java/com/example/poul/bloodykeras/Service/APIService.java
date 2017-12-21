@@ -32,11 +32,11 @@ public interface APIService {
     @FormUrlEncoded
     @POST("/AddPatient.php")
     Observable<Void>   addPatient(@Field("Lname") String Lname, @Field("Fname") String Fname ,
-                     @Field("Fathername") String Fathername , @Field("BirthYear") int BirthYear,
-                     @Field("Phone") int Phone, @Field("Address") String Address,
+                     @Field("Fathername") String Fathername , @Field("BirthYear") String BirthYear,
+                     @Field("Phone") String Phone, @Field("Address") String Address,
                      @Field("AT") String AT, @Field("Clinic") String Clinic,
                      @Field("Diagnosis") String Diagnosis , @Field("Bloodtype") String Bloodtype,
-                     @Field("Rh") String Rh, @Field("Fenotypos") String Fenotypos, @Field("Antisomata") String Antisomata) ;
+                     @Field("Rh") String Rh ) ;
 
     @FormUrlEncoded
     @POST("/SearchPatient.php")
@@ -98,6 +98,9 @@ public interface APIService {
     @FormUrlEncoded
     @POST("/TransfusionExecution.php")
     Observable<Void> ExecTrans(@Field("TagRfid") String TagRfid);
+
+    @GET("/GetAvailableOlikoBlood.php")
+    Observable<List<Bloodbag>> getOlikoBlood();
 
 
 }

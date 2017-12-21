@@ -156,15 +156,15 @@ public class ScanNFC extends AppCompatActivity {
 
                // String s1="<strong></strong>";
             // a SpannableStringBuilder containing text to display
-            SpannableStringBuilder sb = new SpannableStringBuilder("PRODUCED DATE:  " + parts[0] );
-            SpannableStringBuilder sb2 = new SpannableStringBuilder("DONOR'S ID:  " +parts[1] );
+            SpannableStringBuilder sb = new SpannableStringBuilder("Produced date:  " + parts[0] );
+            SpannableStringBuilder sb2 = new SpannableStringBuilder("Donor's id:  " +parts[1] );
 
             // create a bold StyleSpan to be used on the SpannableStringBuilder
-            StyleSpan b = new StyleSpan(android.graphics.Typeface.BOLD); // Span to make text bold
+            //StyleSpan b = new StyleSpan(android.graphics.Typeface.BOLD); // Span to make text bold
 
             // set only the name part of the SpannableStringBuilder to be bold
-            sb.setSpan(b, 16, 16 + parts[0].length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            sb2.setSpan(b, 13, 13 + parts[1].length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+           // sb.setSpan(b, 16, 16 + parts[0].length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+           // sb2.setSpan(b, 13, 13 + parts[1].length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
             txtTagdate.setText(sb); // set the TextView to be the SpannableStringBuilder
             txtTagiddonor.setText(sb2);
@@ -175,13 +175,13 @@ public class ScanNFC extends AppCompatActivity {
                 txtTagkind.setText("Blood product:"+ " " + "pending results");
                  txtTagbloodtype.setText("Bloodtype:"+ " "+ "pending results");
                  txtTagrh.setText("Rh:"+ " " + "pending results");
-                 txtTagavailable.setText("Availability:" + " "+ "pending results");
+
             }else {
 
-            txtTagkind.setText("Blood product:"+ " " + parts[4]);
-           txtTagbloodtype.setText("Bloodtype:"+ " "+ parts[5]);
-           txtTagrh.setText("Rh:"+ " " +parts[6]);
-            txtTagavailable.setText("Availability:" + " "+parts[7]);}
+            txtTagkind.setText("Blood product:"+ " " + parts[4]+" "+parts[5]);
+           txtTagbloodtype.setText("Bloodtype:"+ " "+ parts[6]);
+           txtTagrh.setText("Rh:"+ " " +parts[7]);
+            }
 
         }else
         {

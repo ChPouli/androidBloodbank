@@ -133,6 +133,10 @@ public class ExecuteTransfusion extends AppCompatActivity {
 
                 Toast.makeText(ExecuteTransfusion.this, "success", Toast.LENGTH_SHORT).show();
                 iter=iter-1;
+
+                    adapter.changeBackgroundcolor(0);
+
+
                 }
             else {
                 Toast.makeText(ExecuteTransfusion.this, "Try other bag", Toast.LENGTH_SHORT).show();
@@ -167,6 +171,7 @@ public class ExecuteTransfusion extends AppCompatActivity {
                 });
                         Snackbar.make(coordinatorLayout, "Trans completed", Snackbar.LENGTH_INDEFINITE)
                                 .show();
+                        finish();
                     }
                 }).show();
             }

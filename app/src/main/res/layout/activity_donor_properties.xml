@@ -22,15 +22,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/messagedonorinfo"
-        android:text="Enter donor's info"
+        android:text="Fill out donor's info"
         android:textSize="17sp"
         android:textAlignment="center"
 
         />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#f5797878"/>
+
 
     <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -191,39 +188,44 @@
     </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/bloodtypeEditText"
-                android:inputType="text"
-                android:hint="Blood type:"
-
-                />
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            >
+            android:textSize="18dp"
+            android:text="Blood type: "/>
 
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/BtypeSpdonor"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10sp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="Rh: "/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/RhEditText"
-                android:inputType="text"
-                android:hint="Rh:"
-
-                />
-    </android.support.design.widget.TextInputLayout>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RhSpdonor"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"

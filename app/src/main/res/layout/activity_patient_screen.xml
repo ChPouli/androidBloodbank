@@ -22,17 +22,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/messagePatientinfo"
-            android:text="Enter patient's info"
+            android:text="Fill out patient's info"
             android:textSize="17sp"
             android:textAlignment="center"
 
             />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#f5797878"/>
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -40,226 +36,161 @@
             android:layout_marginTop="8dp"
 
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/FirstName"
-                android:text="First Name: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/FirstNameEditText"
                 android:inputType="text"
+                android:hint="First Name:"
 
                 />
-        </LinearLayout>
-
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/LastName"
-                android:text="Last Name: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/LastNameEditText"
                 android:inputType="text"
+                android:hint="Last Name:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/FatherName"
-                android:text="Father Name: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/FatherNameEditText"
                 android:inputType="text"
+                android:hint="Father Name:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/BirthYear"
-                android:text="Birth Year: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/BirthYearEditText"
                 android:inputType="numberDecimal"
+                android:hint="Birth Year:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/AT"
-                android:text="Id number: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/IdEditText"
                 android:inputType="text"
+                android:hint="Id number:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Address"
-                android:text="Address: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/AddressEditText"
                 android:inputType="text"
+                android:hint="Address:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Telephone"
-                android:text="Phone number: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/TelephoneEditText"
                 android:inputType="numberDecimal"
+                android:hint="Phone number:"
 
                 />
 
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/clinic"
-                android:text="Clinic: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/clinicEditText"
                 android:inputType="text"
+                android:hint="Clinic:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Diagnosis"
-                android:text="Diagnosis: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/DiagnosisEditText"
                 android:inputType="text"
+                android:hint="Diagnosis:"
 
                 />
+        </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10sp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Blood type: "/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BtypeSpPatient"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -267,100 +198,20 @@
             android:orientation="horizontal"
             android:paddingTop="10sp"
             >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/BloodTypeP"
-                android:text="BloodType: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
+                android:textSize="18dp"
+                android:text="Rh: "/>
 
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/BloodTypePEditText"
-                android:inputType="text"
-
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            >
-
-            <TextView
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/RhP"
-                android:text="Rh: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/RhPEditText"
-                android:inputType="text"
-
-                />
+                android:id="@+id/RhSpPatient"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/FenotyposP"
-                android:text="Fenotype: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/FenotyposPEditText"
-                android:inputType="text"
-
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/AntisomataP"
-                android:text="Antisomata: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/AntisomataPEditText"
-                android:inputType="text"
-
-                />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -54,8 +54,8 @@
             android:title="Scan Bloodbag" />
         <item
             android:id="@+id/navthistory"
-            android:icon="@drawable/thistory"
-            android:title="Transfusion's History" />
+
+            android:title=" " />
 
 
     </group>

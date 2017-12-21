@@ -5,8 +5,10 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,11 +23,12 @@ public class Session extends AppCompatActivity {
     private int iduser;
     private int iddonor;
     private int idsession;
-
+    String status;
     private EditText pressure;
     private EditText hbht;
     private EditText reactions;
-    private EditText status;
+
+    CheckBox chkBoxStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,9 @@ public class Session extends AppCompatActivity {
         pressure= (EditText)findViewById(R.id.PressureEditText);
         hbht=(EditText)findViewById(R.id.aimatokritiEditText);
         reactions=(EditText)findViewById(R.id.reactionsEditText);
-        status=(EditText)findViewById(R.id.sessionstatusEditText);
+
+        chkBoxStatus = (CheckBox) findViewById(R.id.checkBoxStatus);
+       chkBoxStatus.setChecked(false);
 
     }
 
@@ -65,72 +70,88 @@ public class Session extends AppCompatActivity {
     //endregion
 
     public  void addSession(View view){
-        //Toast.makeText(Session.this,"user"+ iduser + " " + "donor"+ iddonor, Toast.LENGTH_LONG).show();
 
-            //Toast.makeText(Session.this,"mphkes gamhdi?",Toast.LENGTH_LONG).show();
-        APIServiceAdapter.getInstance()
-                .addSession(pressure.getText().toString(), hbht.getText().toString(), status.getText().toString(),reactions.getText().toString(),iduser,iddonor)
-                .subscribe(new Subscriber<Void>() {
-                    @Override
-                    public void onCompleted() {
+        if (chkBoxStatus.isChecked()==true){
 
-                    }
+        status="0";
+            APIServiceAdapter.getInstance()
+                    .addSession(pressure.getText().toString(), hbht.getText().toString(), status, reactions.getText().toString(), iduser, iddonor)
+                    .subscribe(new Subscriber<Void>() {
+                        @Override
+                        public void onCompleted() {
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("gamhdi1", e.getMessage());
-                    }
+                        }
 
-                    @Override
-                    public void onNext(Void aVoid) {
-                                APIServiceAdapter.getInstance().getSessionId(iddonor).subscribe(new Subscriber<List<SessionM>>() {
-                                    @Override
-                                    public void onCompleted() {
+                        @Override
+                        public void onError(Throwable e) {
 
-                                    }
+                        }
 
-                                    @Override
-                                    public void onError(Throwable e) {
-                                        Log.e("gamhdi2", e.getMessage());
-                                    }
+                        @Override
+                        public void onNext(Void aVoid) {
+                            Toast.makeText(Session.this, "Session successfully inserted" , Toast.LENGTH_LONG).show();
+                                finish();
+                        }
+                    });
 
-                                    @Override
-                                    public void onNext(List<SessionM> sessionMs) {
-                                       // Toast.makeText(Session.this,"panagia moy" + sessionMs.get(0).getId(),Toast.LENGTH_LONG).show();
-                                        idsession=sessionMs.get(0).getId();
+        }
 
-                                        Toast.makeText(Session.this,"Session successfully inserted with id " + idsession,Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                    }
-                });
-                        /*(new Subscriber<List<SessionM>>() {
-                    @Override
-                    public void onCompleted() {
+        else {
 
-                    }
+            status="1";
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("gamhmenoKerato", e.getMessage());
-                    }
+            APIServiceAdapter.getInstance()
+                    .addSession(pressure.getText().toString(), hbht.getText().toString(), status, reactions.getText().toString(), iduser, iddonor)
+                    .subscribe(new Subscriber<Void>() {
+                        @Override
+                        public void onCompleted() {
 
-                    @Override
-                    public void onNext(List<SessionM> sessionMs) {
+                        }
 
-                       Toast.makeText(Session.this,sessionMs.get(0).getId(),Toast.LENGTH_LONG).show();
-                    }
-                });*/
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.e("gamhdi1", e.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(Void aVoid) {
+                            APIServiceAdapter.getInstance().getSessionId(iddonor).subscribe(new Subscriber<List<SessionM>>() {
+                                @Override
+                                public void onCompleted() {
+
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.e("gamhdi2", e.getMessage());
+                                }
+
+                                @Override
+                                public void onNext(List<SessionM> sessionMs) {
+
+                                    // Toast.makeText(Session.this,"panagia moy" + sessionMs.get(0).getId(),Toast.LENGTH_LONG).show();
+                                    idsession = sessionMs.get(0).getId();
+
+                                    Toast toast = Toast.makeText(Session.this, "Session successfully inserted", Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER, 0, 0);
+                                    toast.show();
+                                    Intent intent = new Intent(Session.this, NewBag.class);
+                                    intent.putExtra("userid", iduser);
+                                    intent.putExtra("donorid", iddonor);
+                                    intent.putExtra("sessionid", idsession);
+
+                                    startActivity(intent);
+
+                                    finish();
+                                }
+                            });
+                        }
+                    });
+        }
+
     }
 
 
 
-    public void createBag(View view){
-        Intent intent = new Intent(this, NewBag.class);
-        intent.putExtra("userid",iduser);
-        intent.putExtra("donorid",iddonor);
-        intent.putExtra("sessionid",idsession);
 
-        startActivity(intent);
-    }
 }

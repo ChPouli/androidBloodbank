@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.poul.bloodykeras.Model.User;
@@ -17,7 +20,7 @@ import java.util.List;
 
 import rx.Subscriber;
 
-public class PatientScreen extends AppCompatActivity {
+public class PatientScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
    private EditText lname ;
 
@@ -33,11 +36,12 @@ public class PatientScreen extends AppCompatActivity {
    private EditText clinic;
    private EditText diagnosis;
 
-   private EditText  bloodtype;
-   private EditText Rh ;
 
-    private  EditText fenotypos;
-   private EditText antisomata;
+
+    private Spinner btypeSp, rhSp;
+    private String bloodTypeString,RhString;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +65,46 @@ public class PatientScreen extends AppCompatActivity {
         clinic = (EditText)findViewById(R.id.clinicEditText);
         diagnosis = (EditText)findViewById(R.id.DiagnosisEditText);
 
-        bloodtype = (EditText)findViewById(R.id.BloodTypePEditText);
-        Rh = (EditText)findViewById(R.id.RhPEditText);
+        //spinner add
+        addItemsOnSpinners();
 
-        fenotypos = (EditText)findViewById(R.id.FenotyposPEditText);
-        antisomata = (EditText)findViewById(R.id.AntisomataPEditText);
+
     }
+
+    //region Spinner function
+
+    public void addItemsOnSpinners(){
+        btypeSp = (Spinner) findViewById(R.id.BtypeSpPatient);
+        rhSp = (Spinner) findViewById(R.id.RhSpPatient);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapterBtype = ArrayAdapter.createFromResource(this,R.array.Blood_Type, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterRh = ArrayAdapter.createFromResource(this,R.array.Rh, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapterBtype.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterRh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        btypeSp.setAdapter(adapterBtype);
+        btypeSp.setOnItemSelectedListener(this);
+        rhSp.setAdapter(adapterRh);
+        rhSp.setOnItemSelectedListener(this);
+    }
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        bloodTypeString = btypeSp.getSelectedItem().toString();
+        //String item = parent.getItemAtPosition(pos).toString();
+        RhString=rhSp.getSelectedItem().toString();
+
+        // Showing selected spinner item
+        //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
+    }
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+
+
+    //endregion
 
     //region toolbar back arrow control functions
     @Override
@@ -89,10 +127,9 @@ public class PatientScreen extends AppCompatActivity {
     public void addPatientBtn(View view){
        
         APIServiceAdapter.getInstance().addPatient(lname.getText().toString(),fname.getText().toString(),
-                fathername.getText().toString(),byear.getInputType(),phone.getInputType(),
+                fathername.getText().toString(),byear.getText().toString(),phone.getText().toString(),
                 address.getText().toString(),AT.getText().toString(),clinic.getText().toString(),
-                diagnosis.getText().toString(),bloodtype.getText().toString(),Rh.getText().toString(),
-                fenotypos.getText().toString(),antisomata.getText().toString()
+                diagnosis.getText().toString(),bloodTypeString,RhString
                 ).
                 subscribe(new Subscriber<Void>() {
                     @Override
@@ -108,7 +145,7 @@ public class PatientScreen extends AppCompatActivity {
                     @Override
                     public void onNext(Void aVoid) {
                         Toast.makeText(PatientScreen.this,"Successfully inserted Patient",Toast.LENGTH_LONG).show();
-
+                            finish();
 
                     }
                 });

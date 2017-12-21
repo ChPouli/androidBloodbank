@@ -10,6 +10,8 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Parcelable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +45,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
     String timeStamp;
     byte[] uid;
     StringBuilder builder;
+    CoordinatorLayout coordinatorLayout;
 
     NfcAdapter nfcAdapter;
 
@@ -57,8 +60,17 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
         volume=(EditText)findViewById(R.id.volumenewbagEditText);
 
 
-        //addItemsOnBagSpinner();
-         timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        //Na brei to sygkekrimeno coordinator sto layout Mh to Xehaseis
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutNewBag);
+
+        Snackbar.make(coordinatorLayout, "After completing the fields,approach your device to NFC tag to finish insertion", Snackbar.LENGTH_INDEFINITE)
+                .show();
+
+
+
+
+        timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        //spinner add
         addItemsOnSpinners();
 
         //nfc adapter
@@ -75,7 +87,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
                 }
     }
 
-    //byte array to hex string converter
+    //region byte array to hex string converter
     public static String byteArrayToHexString(final byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for(byte b : bytes){
@@ -83,6 +95,7 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
         }
         return sb.toString();
     }
+//endregion
 
     //pianei array kai grafei mnm
     @Override
@@ -97,14 +110,35 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
              uid = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
 
 
-
-            //Toast.makeText(NewBag.this, byteArrayToHexString(uid), Toast.LENGTH_SHORT).show();
-
             String rec= timeStamp +" "+  iddonor +" "+ volume.getText().toString()+ " "+anti;
-           // Toast.makeText(NewBag.this,rec,Toast.LENGTH_LONG).show();
+
             NdefMessage ndefMessage = createNdefMessage(rec);
 
             writeNdefMessage(tag, ndefMessage);
+
+            //call gia add bloodbag
+            APIServiceAdapter.getInstance().addNewBag(bagtype,anti,volume.getText().toString(),idsession, byteArrayToHexString(uid)).subscribe(new Subscriber<Void>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Void aVoid) {
+
+                    Toast.makeText(NewBag.this, "Blood Bag succesfully inserted", Toast.LENGTH_LONG).show();
+                    finish();
+
+                }
+            });
+
+
+
         }
         super.onNewIntent(intent);
     }
@@ -123,6 +157,8 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
         disableForegroundDispatchSystem();
         super.onPause();
     }
+
+    //region Spinner handling
 
     public void addItemsOnSpinners(){
         typeSp = (Spinner) findViewById(R.id.BagsSpinner);
@@ -154,6 +190,8 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
     }
+
+    //endregion
 
 
     //region nf enable disable functions
@@ -256,29 +294,6 @@ public class NewBag extends AppCompatActivity implements AdapterView.OnItemSelec
     }
 
 
-public  void addNewBag(View view){
 
-    APIServiceAdapter.getInstance().addNewBag(bagtype,anti,volume.getText().toString(),idsession, byteArrayToHexString(uid)).subscribe(new Subscriber<Void>() {
-        @Override
-        public void onCompleted() {
-
-        }
-
-        @Override
-        public void onError(Throwable e) {
-
-        }
-
-        @Override
-        public void onNext(Void aVoid) {
-
-            Toast.makeText(NewBag.this, "Blood Bag succesfully inserted", Toast.LENGTH_LONG).show();
-          finish();
-
-        }
-    });
-
-
-}
 
 }

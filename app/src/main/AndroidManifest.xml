@@ -11,7 +11,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/logonew"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -41,7 +41,8 @@
         <activity
             android:name=".PatientSearch"
             android:parentActivityName=".NDchoices" />
-        <activity android:name=".NewBag" />
+        <activity android:name=".NewBag"
+            />
         <activity
             android:name=".ApplicationScreen"
             android:parentActivityName=".NDchoices" />

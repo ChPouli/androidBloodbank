@@ -94,9 +94,12 @@ public class DonorSearch extends AppCompatActivity  {
                     adapter = new ResultDonorSearch(donors, R.layout.donor_search_result, getApplicationContext(),iddonor ,iduser);
                     recyclerView.setAdapter(adapter);
 
+
                 }
-                else
-                    Toast.makeText(DonorSearch.this, "No Donor",Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText(DonorSearch.this, "No Donor",Toast.LENGTH_SHORT).show();}
+
+
 
             }
         });

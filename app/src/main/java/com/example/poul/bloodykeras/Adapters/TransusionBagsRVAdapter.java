@@ -2,6 +2,7 @@ package com.example.poul.bloodykeras.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ public class TransusionBagsRVAdapter extends RecyclerView.Adapter<TransusionBags
     private Context context;
     private int idpatient;
     private int iduser;
+    int highlightPosition=666;
 
 
     private String DayProduced;
@@ -51,10 +53,17 @@ public class TransusionBagsRVAdapter extends RecyclerView.Adapter<TransusionBags
     @Override
     public void onBindViewHolder(TransBloodbagsViewHolder holder, final int position) {
 
-        holder.uid.setText("BloodBag uid:" + " " + Tbloodbag.get(position).getTagRfid() );
-        holder.prodDate.setText("Produced Date:" + " " + Tbloodbag.get(position).getDate());
+        if(position == highlightPosition ) {
 
+            holder.uid.setText("BloodBag uid:" + " " + Tbloodbag.get(position).getTagRfid());
+            holder.prodDate.setText("Produced Date:" + " " + Tbloodbag.get(position).getDate());
+            holder.itemView.setBackgroundColor(Color.parseColor("#FF89E767"));
 
+        }else {
+            holder.uid.setText("BloodBag uid:" + " " + Tbloodbag.get(position).getTagRfid());
+            holder.prodDate.setText("Produced Date:" + " " + Tbloodbag.get(position).getDate());
+
+        }
 
 
 
@@ -63,6 +72,15 @@ public class TransusionBagsRVAdapter extends RecyclerView.Adapter<TransusionBags
     @Override
     public int getItemCount() {
         return Tbloodbag.size();
+
+
+    }
+
+    //
+    public void changeBackgroundcolor(int pos){
+
+            highlightPosition = pos;
+            notifyItemChanged(pos);
 
 
     }

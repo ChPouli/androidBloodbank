@@ -9,16 +9,14 @@ public class Patient {
     private String Lname;
     private String Fname;
     private String Fathername;
-    private int   BirthYear;
-    private int  Phone;
+    private String   BirthYear;
+    private String  Phone;
     private String Address;
     private String AT;
     private String Clinic;
     private String Diagnosis;
     private String Bloodtype;
     private String Rh;
-    private String Fenotypos;
-    private String Antisomata;
 
 
 
@@ -30,7 +28,7 @@ public class Patient {
 
     //region Constructors
 
-    public Patient(int id, String lname, String fname, String fathername, int birthYear, int phone, String address, String AT, String clinic, String diagnosis, String bloodtype, String rh, String fenotypos, String antisomata) {
+    public Patient(int id, String lname, String fname, String fathername, String birthYear, String phone, String address, String AT, String clinic, String diagnosis, String bloodtype, String rh ) {
         Id = id;
         Lname = lname;
         Fname = fname;
@@ -43,8 +41,7 @@ public class Patient {
         Diagnosis = diagnosis;
         Bloodtype = bloodtype;
         Rh = rh;
-        Fenotypos = fenotypos;
-        Antisomata = antisomata;
+
     }
 
     //endregion
@@ -67,7 +64,7 @@ public class Patient {
         return Fathername;
     }
 
-    public int getBirthYear() {
+    public String getBirthYear() {
         return BirthYear;
     }
 
@@ -75,7 +72,7 @@ public class Patient {
         return Address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
@@ -99,13 +96,7 @@ public class Patient {
         return Rh;
     }
 
-    public String getFenotypos() {
-        return Fenotypos;
-    }
 
-    public String getAntisomata() {
-        return Antisomata;
-    }
 
     public void setId(int id) {
         Id = id;
@@ -123,11 +114,11 @@ public class Patient {
         Fname = fname;
     }
 
-    public void setBirthYear(int birthYear) {
+    public void setBirthYear(String birthYear) {
         BirthYear = birthYear;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         Phone = phone;
     }
 
@@ -155,13 +146,7 @@ public class Patient {
         Rh = rh;
     }
 
-    public void setFenotypos(String fenotypos) {
-        Fenotypos = fenotypos;
-    }
 
-    public void setAntisomata(String antisomata) {
-        Antisomata = antisomata;
-    }
 //endregion
 }
 

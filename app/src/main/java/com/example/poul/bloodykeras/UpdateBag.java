@@ -11,6 +11,8 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Parcelable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
@@ -21,8 +23,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.poul.bloodykeras.Service.APIServiceAdapter;
@@ -33,14 +38,12 @@ import java.util.Locale;
 
 import rx.Subscriber;
 
-public class UpdateBag extends AppCompatActivity {
-    private EditText kind;
-    private EditText bloodtype;
-    private EditText rh;
-    private EditText checked;
+public class UpdateBag extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
 
-    private EditText available;
+
+
+    CoordinatorLayout coordinatorLayout4;
     NfcAdapter nfcAdapter;
     byte[] uid;
     String oldNFCdata;
@@ -50,6 +53,8 @@ public class UpdateBag extends AppCompatActivity {
     Boolean checkBoxStateAv;
     CheckBox chkBoxVerify;
     CheckBox chkBoxAvailable;
+    private Spinner btypeSp, rhSp,kindSp;
+    private String bloodTypeString,RhString,kindString;
 
 
     @Override
@@ -60,9 +65,13 @@ public class UpdateBag extends AppCompatActivity {
         //enable back arrow toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        kind = (EditText) findViewById(R.id.kindupdatebagEditText);
-        bloodtype = (EditText) findViewById(R.id.bloodtypebagEditText);
-        rh = (EditText) findViewById(R.id.RhupdatebagEditText);
+        //spinner add
+        addItemsOnSpinners();
+
+        //Na brei to sygkekrimeno coordinator sto layout Mh to Xehaseis
+        coordinatorLayout4 = (CoordinatorLayout) findViewById(R.id.coordinatorLayout4);
+        Snackbar.make(coordinatorLayout4, "After completing the fields,approach your device to NFC tag to finish update", Snackbar.LENGTH_INDEFINITE)
+                .show();
 
 
 
@@ -89,6 +98,48 @@ public class UpdateBag extends AppCompatActivity {
 
     }
 
+    //region Spinner handling
+
+    public void addItemsOnSpinners(){
+        btypeSp = (Spinner) findViewById(R.id.BtypeSpUB);
+        rhSp = (Spinner) findViewById(R.id.RhSpUB);
+        kindSp=(Spinner) findViewById(R.id.kindSpUB);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapterBtype = ArrayAdapter.createFromResource(this,R.array.Blood_Type, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterRh = ArrayAdapter.createFromResource(this,R.array.Rh, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterProduct = ArrayAdapter.createFromResource(this,R.array.Blood_Product, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapterBtype.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterRh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterProduct.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        btypeSp.setAdapter(adapterBtype);
+        btypeSp.setOnItemSelectedListener(this);
+        rhSp.setAdapter(adapterRh);
+        rhSp.setOnItemSelectedListener(this);
+        kindSp.setAdapter(adapterProduct);
+        kindSp.setOnItemSelectedListener(this);
+    }
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        bloodTypeString = btypeSp.getSelectedItem().toString();
+        //String item = parent.getItemAtPosition(pos).toString();
+        RhString=rhSp.getSelectedItem().toString();
+
+        kindString=kindSp.getSelectedItem().toString();
+
+
+    }
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+
+
+    //endregion
+
     //me to poy piasei intent apo nfc diabazei uid
     protected void onNewIntent(Intent intent) {
 
@@ -106,12 +157,48 @@ public class UpdateBag extends AppCompatActivity {
             }
 
 
-            String rec = oldNFCdata + " " + kind.getText().toString() + " " + bloodtype.getText().toString()
-                    + " " + rh.getText().toString() + " " + available.getText().toString();
+            String rec = oldNFCdata + " " + kindString + " " + bloodTypeString
+                    + " " + RhString ;
             // Toast.makeText(NewBag.this,rec,Toast.LENGTH_LONG).show();
             NdefMessage ndefMessage = createNdefMessage(rec);
 
             writeNdefMessage(tag, ndefMessage);
+
+            //control check box results
+            if(chkBoxAvailable.isChecked()==true){
+                avail="1";
+            }else {
+                avail="0";
+            }
+
+            if(chkBoxVerify.isChecked()==true){
+                verif="1";
+            }else {
+                verif="0";
+            }
+
+
+            APIServiceAdapter.getInstance().updateBag(kindString, bloodTypeString, RhString
+                    , verif, byteArrayToHexString(uid),
+                    avail)
+                    .subscribe(new Subscriber<Void>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.e("updateBaggamietai", e.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(Void aVoid) {
+
+                            Toast.makeText(UpdateBag.this, "Bag successfully updated", Toast.LENGTH_LONG).show();
+                                 finish();
+                        }
+                    });
         }
         super.onNewIntent(intent);
     }
@@ -295,6 +382,8 @@ public class UpdateBag extends AppCompatActivity {
 
     public void updateBagBtn(View view) {
 
+        /*
+
 
 //control check box results
         if(chkBoxAvailable.isChecked()==true){
@@ -310,30 +399,35 @@ public class UpdateBag extends AppCompatActivity {
         }
 
 
-
-        APIServiceAdapter.getInstance().updateBag(kind.getText().toString(), bloodtype.getText().toString(), rh.getText().toString()
-                , verif, byteArrayToHexString(uid),
-                avail)
-                .subscribe(new Subscriber<Void>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("updateBaggamietai", e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(Void aVoid) {
-
-                        Toast.makeText(UpdateBag.this, "Bag successfully updated", Toast.LENGTH_LONG).show();
-
-                    }
-                });
-    }
+        Snackbar.make(coordinatorLayout4, "Approach your device to nfc tag to complete task", Snackbar.LENGTH_INDEFINITE).setAction("Ok", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
+                APIServiceAdapter.getInstance().updateBag(kindString, bloodTypeString, RhString
+                        , verif, byteArrayToHexString(uid),
+                        avail)
+                        .subscribe(new Subscriber<Void>() {
+                            @Override
+                            public void onCompleted() {
 
-}
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.e("updateBaggamietai", e.getMessage());
+                            }
+
+                            @Override
+                            public void onNext(Void aVoid) {
+
+                                Toast.makeText(UpdateBag.this, "Bag successfully updated", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+            }
+        }).show();*/
+            }
+
+
+        }

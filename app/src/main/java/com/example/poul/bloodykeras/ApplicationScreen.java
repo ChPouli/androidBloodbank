@@ -11,9 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.poul.bloodykeras.Service.APIServiceAdapter;
@@ -25,7 +28,7 @@ import java.util.Calendar;
 
 import rx.Subscriber;
 
-public class ApplicationScreen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class ApplicationScreen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,AdapterView.OnItemSelectedListener{
 
 
     String formattedDate;
@@ -36,10 +39,10 @@ public class ApplicationScreen extends AppCompatActivity implements DatePickerDi
 
     private EditText clinic;
     private EditText quantity;
-    private EditText priority;
-    private EditText paragogo;
-    private EditText abo;
-    private EditText rh;
+
+
+    private Spinner btypeSp, rhSp,kindSp , prioritySp;
+    private String bloodTypeString,RhString,kindString,priorityString;
 
 
     @Override
@@ -52,10 +55,11 @@ public class ApplicationScreen extends AppCompatActivity implements DatePickerDi
 
         clinic= (EditText)findViewById(R.id.ClinicAppEditText);
         quantity=(EditText)findViewById(R.id.QuantityEditText);
-        priority=(EditText)findViewById(R.id.PriorityEditText);
-        paragogo=(EditText)findViewById(R.id.BloodProductEditText);
-        abo=(EditText)findViewById(R.id.appABOEditText);
-        rh=(EditText)findViewById(R.id.appRhEditText);
+
+
+
+        //spinner add
+        addItemsOnSpinners();
 
 
         //enable back arrow toolbar
@@ -70,6 +74,54 @@ public class ApplicationScreen extends AppCompatActivity implements DatePickerDi
 
 
     }
+
+    //region Spinner handling
+
+    public void addItemsOnSpinners(){
+        btypeSp = (Spinner) findViewById(R.id.BtypeSpApp);
+        rhSp = (Spinner) findViewById(R.id.RhSpApp);
+        kindSp=(Spinner) findViewById(R.id.kindSpApp);
+        prioritySp=(Spinner) findViewById(R.id.PrioritySpApp);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapterBtype = ArrayAdapter.createFromResource(this,R.array.Blood_Type, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterRh = ArrayAdapter.createFromResource(this,R.array.Rh, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterProduct = ArrayAdapter.createFromResource(this,R.array.Blood_Product, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterPriority = ArrayAdapter.createFromResource(this,R.array.Priority_App, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapterBtype.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterRh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterProduct.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterPriority.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        btypeSp.setAdapter(adapterBtype);
+        btypeSp.setOnItemSelectedListener(this);
+        rhSp.setAdapter(adapterRh);
+        rhSp.setOnItemSelectedListener(this);
+        kindSp.setAdapter(adapterProduct);
+        kindSp.setOnItemSelectedListener(this);
+        prioritySp.setAdapter(adapterPriority);
+        prioritySp.setOnItemSelectedListener(this);
+    }
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        bloodTypeString = btypeSp.getSelectedItem().toString();
+        //String item = parent.getItemAtPosition(pos).toString();
+        RhString=rhSp.getSelectedItem().toString();
+
+        kindString=kindSp.getSelectedItem().toString();
+        priorityString=prioritySp.getSelectedItem().toString();
+
+
+    }
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+
+
+    //endregion
 
 //o listener tou date
     public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -108,8 +160,8 @@ public class ApplicationScreen extends AppCompatActivity implements DatePickerDi
     public  void addNewApplication(View view){
 
         APIServiceAdapter.getInstance().addNewApplication(idpatient,quantity.getText().toString(),
-                clinic.getText().toString(),paragogo.getText().toString() ,priority.getText().toString(),
-                formattedDate , abo.getText().toString(),rh.getText().toString()).subscribe(new Subscriber<Void>() {
+                clinic.getText().toString(),kindString ,priorityString,
+                formattedDate , bloodTypeString,RhString).subscribe(new Subscriber<Void>() {
             @Override
             public void onCompleted() {
 
@@ -122,8 +174,10 @@ public class ApplicationScreen extends AppCompatActivity implements DatePickerDi
 
             @Override
             public void onNext(Void aVoid) {
-                Toast.makeText(ApplicationScreen.this,"Request successfully inserted",Toast.LENGTH_LONG).show();
-               // Toast.makeText(ApplicationScreen.this,"wx manoyla moy" + quantity.getText().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(ApplicationScreen.this, "Request successfully inserted", Toast.LENGTH_LONG).show();
+                finish();
+
+                // Toast.makeText(ApplicationScreen.this,"wx manoyla moy" + quantity.getText().toString(),Toast.LENGTH_LONG).show();
                 // Toast.makeText(NewBag.this, "kaleeeee" + idsession, Toast.LENGTH_LONG).show();
             }
         });
@@ -143,8 +197,13 @@ public class ApplicationScreen extends AppCompatActivity implements DatePickerDi
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
+            DatePickerDialog datePickerDialog =  new DatePickerDialog(getActivity(),(DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+            return datePickerDialog;
+
+
             // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(),(DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
+           // return new DatePickerDialog(getActivity(),(DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
         }
 
 

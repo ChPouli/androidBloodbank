@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BloodyKeras</string>
+    <string name="app_name">e-Blood</string>
     <string name="action_settings">Settings</string>
     <string-array name="Bag_Type">
         <item>double</item>
@@ -13,11 +13,33 @@
         <item>CPDA1</item>
         <item>SAG-M</item>
     </string-array>
+    <string-array name="Blood_Type">
+        <item>A</item>
+        <item>B</item>
+        <item>O</item>
+        <item>AB</item>
+    </string-array>
+    <string-array name="Rh">
+        <item>negative</item>
+        <item>positive</item>
+    </string-array>
+    <string-array name="Blood_Product">
+        <item>Ολικό αίμα</item>
+        <item>Συμπυκνωμένα ερυθρά</item>
+        <item>Πλάσμα κοινό</item>
+        <item>FFP πλάσμα</item>
+        <item>Πλυμμένα ερυθρά</item>
+    </string-array>
+    <string-array name="Priority_App">
+        <item>Άμεση</item>
+        <item>Επείγουσα</item>
+        <item>Προγραμματισμένη Επέμβαση</item>
+    </string-array>
     <string name="title_activity_navigation_dchoices_screen">NavigationDChoicesScreen</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_ndchoices">NDchoices</string>
+    <string name="title_activity_ndchoices">e-Blood</string>
     <string name="title_activity_pie_chart">PieChart</string>
     <string name="title_activity_transfusion_req_show">TransfusionReqShow</string>
 </resources>

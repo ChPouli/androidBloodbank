@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.poul.bloodykeras.Service.APIServiceAdapter;
 
 import rx.Subscriber;
 
-public class DonorProperties extends AppCompatActivity {
+public class DonorProperties extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private EditText lname ;
 
@@ -32,6 +35,8 @@ public class DonorProperties extends AppCompatActivity {
 
     private EditText  bloodtype;
     private EditText Rh ;
+    private Spinner btypeSp, rhSp;
+    private String bloodTypeString,RhString;
 
 
     @Override
@@ -56,9 +61,8 @@ public class DonorProperties extends AppCompatActivity {
         occupation = (EditText)findViewById(R.id.JobEditText);
         birthplace = (EditText)findViewById(R.id.BirthPlaceEditText);
 
-        bloodtype = (EditText)findViewById(R.id.bloodtypeEditText);
-        Rh = (EditText)findViewById(R.id.RhEditText);
-
+        //spinner add
+        addItemsOnSpinners();
     }
 
     //region toolbar back arrow control functions
@@ -75,12 +79,47 @@ public class DonorProperties extends AppCompatActivity {
 
     //endregion
 
+    //region Spinner function
+
+    public void addItemsOnSpinners(){
+        btypeSp = (Spinner) findViewById(R.id.BtypeSpdonor);
+        rhSp = (Spinner) findViewById(R.id.RhSpdonor);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapterBtype = ArrayAdapter.createFromResource(this,R.array.Blood_Type, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterRh = ArrayAdapter.createFromResource(this,R.array.Rh, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapterBtype.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterRh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        btypeSp.setAdapter(adapterBtype);
+        btypeSp.setOnItemSelectedListener(this);
+        rhSp.setAdapter(adapterRh);
+        rhSp.setOnItemSelectedListener(this);
+    }
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        bloodTypeString = btypeSp.getSelectedItem().toString();
+        //String item = parent.getItemAtPosition(pos).toString();
+        RhString=rhSp.getSelectedItem().toString();
+
+        // Showing selected spinner item
+        //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
+    }
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
+
+
+
+    //endregion
+
     public void addDonorBtn (View view){
         APIServiceAdapter.getInstance().addDonor(lname.getText().toString(),fname.getText().toString(),
                                                 fathername.getText().toString(),byear.getText().toString(),phone.getText().toString(),
                                                 address.getText().toString(), AT.getText().toString(),occupation.getText().toString()
-                                                ,birthplace.getText().toString(),bloodtype.getText().toString(),
-                                                    Rh.getText().toString())
+                                                ,birthplace.getText().toString(),bloodTypeString,
+                                                    RhString)
                 .subscribe(new Subscriber<Void>() {
             @Override
             public void onCompleted() {

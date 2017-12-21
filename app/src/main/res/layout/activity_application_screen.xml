@@ -22,15 +22,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/messageappinfo"
-            android:text="Enter application's info"
+            android:text="Fill out application's info"
             android:textSize="17sp"
             android:textAlignment="center"
 
             />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#f5797878"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +44,7 @@
                 android:id="@+id/transfusionDay"
                 android:text="Transfusion Day "
                 android:textSize="16dp"
-                android:textStyle="bold"
+
                 />
 
 
@@ -64,7 +61,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -72,26 +69,17 @@
             android:layout_marginTop="8dp"
 
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/clinicApp"
-                android:text="Clinic: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ClinicAppEditText"
                 android:inputType="text"
+                android:hint="Clinic:"
 
                 />
-        </LinearLayout>
-        <LinearLayout
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -99,132 +87,93 @@
             android:layout_marginTop="8dp"
 
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Quantity"
-                android:text="Units: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/QuantityEditText"
                 android:inputType="number"
+                android:hint="Units:"
 
                 />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10sp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Blood type: "/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BtypeSpApp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
-            android:layout_marginTop="8dp"
-
             >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/priority"
-                android:text="Priority: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
+                android:textSize="18dp"
+                android:text="Rh: "/>
 
-
-            <EditText
-                android:layout_width="match_parent"
+            <Spinner
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/PriorityEditText"
-                android:inputType="numberDecimal"
-
-                />
+                android:id="@+id/RhSpApp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
-            android:layout_marginTop="8dp"
-
             >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/BloodProduct"
-                android:text="Blood product: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
+                android:textSize="18dp"
+                android:text="Product: "/>
 
-
-            <EditText
-                android:layout_width="match_parent"
+            <Spinner
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/BloodProductEditText"
-                android:inputType="text"
-
-                />
+                android:id="@+id/kindSpApp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="10sp"
-            android:layout_marginTop="8dp"
-
             >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/appABO"
-                android:text="ABO: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
+                android:textSize="18dp"
+                android:text="Priority: "/>
 
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/appABOEditText"
-                android:inputType="text"
-
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10sp"
-            android:layout_marginTop="8dp"
-
-            >
-
-            <TextView
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/appRh"
-                android:text="Rh: "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/appRhEditText"
-                android:inputType="text"
-
-                />
+                android:id="@+id/PrioritySpApp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </LinearLayout>
 
 

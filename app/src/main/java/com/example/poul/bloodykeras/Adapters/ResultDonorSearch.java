@@ -77,6 +77,7 @@ int row_index;
                 context.startActivity(intent);
 
 
+
             }
         });
     }

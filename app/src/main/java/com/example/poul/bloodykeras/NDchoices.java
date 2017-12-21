@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,11 +21,18 @@ import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.poul.bloodykeras.Adapters.ExpiredBagsRVadapter;
+import com.example.poul.bloodykeras.Adapters.ResultDonorSearch;
 import com.example.poul.bloodykeras.Model.Application;
+import com.example.poul.bloodykeras.Model.Bloodbag;
 import com.example.poul.bloodykeras.Model.Patient;
 import com.example.poul.bloodykeras.Service.APIServiceAdapter;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import rx.Subscriber;
 
@@ -31,6 +40,10 @@ public class NDchoices extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private int iduser;
     private Intent intent;
+    String fixdate;
+    String gamhdi;
+    RecyclerView recyclerView;
+    ExpiredBagsRVadapter adapter;
 
 
     @Override
@@ -46,12 +59,44 @@ public class NDchoices extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
+
+        APIServiceAdapter.getInstance().getOlikoBlood().subscribe(new Subscriber<List<Bloodbag>>() {
+            @Override
+            public void onCompleted() {
+               // Toast.makeText(NDchoices.this, "Ti 8a ginei?complete", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Toast.makeText(NDchoices.this, "Ti 8a ginei? error", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNext(List<Bloodbag> bloodbags) {
+
+
+                recyclerView = (RecyclerView) findViewById(R.id.recyclerviewNDchoices);
+                recyclerView.setLayoutManager(new LinearLayoutManager(NDchoices.this));
+                adapter = new ExpiredBagsRVadapter(bloodbags, R.layout.item_expired_bags, getApplicationContext(), iduser);
+                recyclerView.setAdapter(adapter);
+
+
+               // Toast.makeText(NDchoices.this, "Ti 8a ginei?" + gamhdi, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                intent = new Intent(NDchoices.this, ScanNFC.class);
+                startActivity(intent);
+
             }
         });
 
@@ -134,7 +179,7 @@ public class NDchoices extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navdonor) {
-            Toast.makeText(NDchoices.this, "ola kala " + " " + iduser ,Toast.LENGTH_LONG).show();
+           // Toast.makeText(NDchoices.this, "ola kala " + " " + iduser ,Toast.LENGTH_LONG).show();
                 //pigeno o8oni anazitisis doti kai toy klhrwnomw to id tou user
             Intent intent = new Intent(this, DonorSearch.class);
             intent.putExtra("userid",iduser);
@@ -144,7 +189,7 @@ public class NDchoices extends AppCompatActivity
 
         } else if (id == R.id.navpatient) {
 
-            Toast.makeText(NDchoices.this, "ola kala " + " " + iduser ,Toast.LENGTH_LONG).show();
+            //Toast.makeText(NDchoices.this, "ola kala " + " " + iduser ,Toast.LENGTH_LONG).show();
             //pigeno o8oni anazitisis patient kai toy klhrwnomw to id tou user
             intent = new Intent(this, PatientSearch.class);
             intent.putExtra("userid",iduser);

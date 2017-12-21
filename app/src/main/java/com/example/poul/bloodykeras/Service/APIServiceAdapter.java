@@ -62,14 +62,13 @@ public class APIServiceAdapter {
                 .authenticate(Username, Password).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-    public Observable<Void> addPatient(String lname, String fname, String fathername, int birthYear,
-                                       int phone, String address, String AT, String clinic,
-                                       String diagnosis, String bloodtype, String rh, String fenotypos,
-                                       String antisomata) {
+    public Observable<Void> addPatient(String lname, String fname, String fathername, String birthYear,
+                                       String phone, String address, String AT, String clinic,
+                                       String diagnosis, String bloodtype, String rh) {
 
         return retrofit.create(APIService.class)
                 .addPatient(lname, fname, fathername, birthYear, phone,
-                        address, AT, clinic, diagnosis, bloodtype, rh, fenotypos, antisomata)
+                        address, AT, clinic, diagnosis, bloodtype, rh)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -157,6 +156,12 @@ public class APIServiceAdapter {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
 
+    }
+
+    public Observable<List<Bloodbag>> getOlikoBlood() {
+        return retrofit.create(APIService.class)
+                .getOlikoBlood().subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 }
